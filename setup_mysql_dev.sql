@@ -11,9 +11,7 @@ IDENTIFIED BY 'hbnb_dev_pwd';
 -- Granting privileges to user
 GRANT ALL PRIVILEGES ON *.* TO
 'hbnb_dev'@'localhost';
-FLUSH PRIVILEGES;
 
 -- Granting select privilege to user
 GRANT SELECT ON performance_schema.*
 TO 'hbnb_dev'@'localhost'
-FLUSH PRIVILEGES;
