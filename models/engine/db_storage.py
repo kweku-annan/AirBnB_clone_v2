@@ -37,7 +37,7 @@ class DBStorage:
         query = self.__session.query()
 
         if cls:
-            query = query.of_type(cls)
+            query = self.__session.query(cls)
 
         for obj in query.all():
             dict[obj.to_dict()["__class__"] + "." + obj.id] = obj
