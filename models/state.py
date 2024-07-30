@@ -25,7 +25,7 @@ class State(BaseModel, Base):
             where state_id == the current State.id"""
             from models import storage
             related_cities = []
-            
+
             for city in storage.all(City):
                 if city.state_id == self.id:
                     related_cities.append(city)

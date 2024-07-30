@@ -65,5 +65,5 @@ class FileStorage:
             del self.__objects[obj_key]
 
     def close(self):
-        """Close storage"""
+        """Calls reload() for deserialization"""
         self.reload()
