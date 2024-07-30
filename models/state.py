@@ -19,6 +19,7 @@ class State(BaseModel, Base):
         else:
             name = ""
 
+        if models.storage_type != "db":
             @property
             def cities(self):
                 """Returns list of City instances
@@ -29,4 +30,4 @@ class State(BaseModel, Base):
                 for city in storage.all(City):
                     if city.state_id == self.id:
                         related_cities.append(city)
-                    return related_cities
+                return related_cities
