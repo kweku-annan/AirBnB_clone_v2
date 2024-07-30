@@ -14,19 +14,19 @@ class State(BaseModel, Base):
     if "models.storage_type" in locals():
         from models import storage_type
         if storage_type == "db":
-            #name = Column(String(128), nullable=False)
+            # name = Column(String(128), nullable=False)
             cities = relationship("City", backref="state")
         else:
             name = ""
 
-        @property
-        def cities(self):
-            """Returns list of City instances
-            where state_id == the current State.id"""
-            from models import storage
-            related_cities = []
+            @property
+            def cities(self):
+                """Returns list of City instances
+                where state_id == the current State.id"""
+                from models import storage
+                related_cities = []
 
-            for city in storage.all(City):
-                if city.state_id == self.id:
-                    related_cities.append(city)
-            return related_cities
+                for city in storage.all(City):
+                    if city.state_id == self.id:
+                        related_cities.append(city)
+                    return related_cities
