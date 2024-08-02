@@ -8,7 +8,8 @@ CREATE USER IF NOT EXISTS 'hbnb_dev'@'localhost'
 IDENTIFIED BY 'hbnb_dev_pwd';
 
 -- Granting privileges to user
-GRANT ALL PRIVILEGES ON *.* TO
+USE hbnb_dev_db;
+GRANT ALL PRIVILEGES ON hbnb_dev_db TO
 'hbnb_dev'@'localhost';
 
 -- Granting select privilege to user
