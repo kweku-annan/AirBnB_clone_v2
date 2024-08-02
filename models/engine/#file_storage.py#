@@ -19,7 +19,7 @@ class FileStorage:
             cls_name = key.split(".")[0]
             cls = str(cls).split('.')[-1][:-2]
             if cls == cls_name:
-                temp.update({key:val})
+                temp.update({key: val})
         return temp
 
     def new(self, obj):
