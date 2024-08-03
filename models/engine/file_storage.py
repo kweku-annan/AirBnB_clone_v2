@@ -15,11 +15,11 @@ class FileStorage:
         if cls is None:
             return FileStorage.__objects
         temp = {}
-        for key, val in FileStorage.__objects.items():
+        for key, val in self.__objects.items():
             cls_name = key.split(".")[0]
-            cls = str(cls).split('.')[-1][:-2]
-            if cls == cls_name:
-                temp.update({key:val})
+            cls_check = str(cls).split('.')[-1][:-2]
+            if cls_check == cls_name:
+                temp[key] = val
         return temp
 
     def new(self, obj):
