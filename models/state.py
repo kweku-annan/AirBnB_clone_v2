@@ -1,58 +1,33 @@
 #!/usr/bin/python3
-#!/usr/bin/python3
-""" State Module for HBNB project """
+"""Defines the State class"""
+import models
 from models.base_model import BaseModel, Base
+from os import getenv
+import sqlalchemy
 from sqlalchemy import Column, String
 from sqlalchemy.orm import relationship
-from models import storage, storage_type
-from models.city import City
 
 
 class State(BaseModel, Base):
-    """ State class """
-    __tablename__ = "states"
-
-    name = Column(String(128), nullable=False)
-    if storage_type == "db":
-        cities = relationship("City", backref="state")
+    """Representation of State"""
+    if getenv('HBNB_TYPE_STORAGE') == 'db':
+        __tablename__ = 'states'
+        name = Column(String(128), nullable=False)
+        cities = relationship("City", backref="states")
     else:
+        name = ""
+
+    def __init__(self, *args, **kwargs):
+        """Initializes state"""
+        super().__init__(*args, **kwargs)
+
+    if getenv('HBNB_TYPE_STORAGE') != 'db':
         @property
         def cities(self):
-            """Returns list of City instances where state_id == current State.id"""
-            return [city for city in storage.all(City).values() if city.state_id == self.id]
-
-'''
-""" State Module for HBNB project """
-from models.base_model import BaseModel, Base
-from sqlalchemy import Column, String
-from sqlalchemy.orm import relationship
-
-
-class State(BaseModel, Base):
-    """ State class """
-    __tablename__ = "states"
-
-    name = Column(String(128), nullable=False)
-
-    if "models.storage_type" in locals():
-        from models import storage_type
-        if storage_type == "db":
-            # name = Column(String(128), nullable=False)
-            cities = relationship("City", backref="state")
-        else:
-            name = ""
-
-        if models.storage_type != "db":
-            self.cities = ""
-            @property
-            def cities(self):
-                """Returns list of City instances
-                where state_id == the current State.id"""
-                from models import storage
-                related_cities = []
-
-                for city in storage.all(City):
-                    if city.state_id == self.id:
-                        related_cities.append(city)
-                return related_cities
-'''
+            """Getter attributes for cities"""
+            values_city = models.storage.all("City").values()
+            list_city = []
+            for city in values_city:
+                if city.state_id == self.id:
+                    list_city.append(city)
+            return list_city
