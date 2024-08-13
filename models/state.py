@@ -4,7 +4,7 @@
 from models.base_model import BaseModel, Base
 from sqlalchemy import Column, String
 from sqlalchemy.orm import relationship
-from models import storage
+from models import storage, storage_type
 from models.city import City
 
 
@@ -12,7 +12,7 @@ class State(BaseModel, Base):
     """ State class """
     __tablename__ = "states"
 
-    name = Column(String(128), nullable=False)e
+    name = Column(String(128), nullable=False)
     if storage_type == "db":
         cities = relationship("City", backref="state")
     else:
