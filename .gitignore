@@ -1,2 +1,9 @@
 *~
+<<<<<<< HEAD
 __pycache__/
+=======
+*/__pycache__/*
+__pycache__*
+__pycache__/
+*.pyc
+>>>>>>> web_flask
